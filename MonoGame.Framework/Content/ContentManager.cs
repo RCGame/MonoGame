@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Utilities;
 using Microsoft.Xna.Framework.Graphics;
 using System.Globalization;
 
-#if !WINDOWS_UAP
+#if !WINDOWS_UAP && !WebGL
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 #endif
@@ -26,8 +26,12 @@ namespace Microsoft.Xna.Framework.Content
 		private string _rootDirectory = string.Empty;
 		private IServiceProvider serviceProvider;
 		private IGraphicsDeviceService graphicsDeviceService;
+#if WebGL
+        private Dictionary<string, object> loadedAssets = new Dictionary<string, object>();
+#else
         private Dictionary<string, object> loadedAssets = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
-		private List<IDisposable> disposableAssets = new List<IDisposable>();
+#endif
+        private List<IDisposable> disposableAssets = new List<IDisposable>();
         private bool disposed;
         private byte[] scratchBuffer;
 
@@ -271,7 +275,7 @@ namespace Microsoft.Xna.Framework.Content
                 if (Path.IsPathRooted(assetPath))                
                     stream = File.OpenRead(assetPath);                
                 else
-#endif                
+#endif
                 stream = TitleContainer.OpenStream(assetPath);
 #if ANDROID
                 // Read the asset into memory in one go. This results in a ~50% reduction

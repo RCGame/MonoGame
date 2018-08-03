@@ -47,6 +47,48 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\AudioChannels.cs" />
+    <Compile Include="Audio\AudioEmitter.cs" />
+    <Compile Include="Audio\AudioListener.cs" />
+    <Compile Include="Audio\AudioUtil.cs" />
+    <Compile Include="Audio\DynamicSoundEffectInstance.cs" />
+    <Compile Include="Audio\DynamicSoundEffectInstance.Web.cs" />
+    <Compile Include="Audio\DynamicSoundEffectInstanceManager.cs" />
+    <Compile Include="Audio\InstancePlayLimitException.cs" />
+    <Compile Include="Audio\Microphone.cs" />
+    <Compile Include="Audio\Microphone.Default.cs" />
+    <Compile Include="Audio\NoAudioHardwareException.cs" />
+    <Compile Include="Audio\NoMicrophoneConnectedException.cs" />
+    <Compile Include="Audio\SoundEffect.cs" />
+    <Compile Include="Audio\SoundEffect.Web.cs" />
+    <Compile Include="Audio\SoundEffectInstance.cs" />
+    <Compile Include="Audio\SoundEffectInstance.Web.cs" />
+    <Compile Include="Audio\SoundEffectInstancePool.cs" />
+    <Compile Include="Audio\SoundState.cs" />
+    <Compile Include="Audio\Xact\AudioCategory.cs" />
+    <Compile Include="Audio\Xact\AudioEngine.cs" />
+    <Compile Include="Audio\Xact\AudioStopOptions.cs" />
+    <Compile Include="Audio\Xact\ClipEvent.cs" />
+    <Compile Include="Audio\Xact\CrossfadeType.cs" />
+    <Compile Include="Audio\Xact\Cue.cs" />
+    <Compile Include="Audio\Xact\DspParameter.cs" />
+    <Compile Include="Audio\Xact\FilterMode.cs" />
+    <Compile Include="Audio\Xact\MaxInstanceBehavior.cs" />
+    <Compile Include="Audio\Xact\MiniFormatTag.cs" />
+    <Compile Include="Audio\Xact\PlayWaveEvent.cs" />
+    <Compile Include="Audio\Xact\ReverbSettings.cs" />
+    <Compile Include="Audio\Xact\RpcCurve.cs" />
+    <Compile Include="Audio\Xact\RpcParameter.cs" />
+    <Compile Include="Audio\Xact\RpcPoint.cs" />
+    <Compile Include="Audio\Xact\RpcPointType.cs" />
+    <Compile Include="Audio\Xact\RpcVariable.cs" />
+    <Compile Include="Audio\Xact\SoundBank.cs" />
+    <Compile Include="Audio\Xact\VolumeEvent.cs" />
+    <Compile Include="Audio\Xact\WaveBank.cs" />
+    <Compile Include="Audio\Xact\WaveBank.Default.cs" />
+    <Compile Include="Audio\Xact\XactClip.cs" />
+    <Compile Include="Audio\Xact\XactHelpers.cs" />
+    <Compile Include="Audio\Xact\XactSound.cs" />
     <Compile Include="BoundingBox.cs" />
     <Compile Include="BoundingFrustum.cs" />
     <Compile Include="BoundingSphere.cs" />
@@ -95,8 +137,6 @@
     <Compile Include="Content\ContentReaders\SByteReader.cs" />
     <Compile Include="Content\ContentReaders\SingleReader.cs" />
     <Compile Include="Content\ContentReaders\SkinnedEffectReader.cs" />
-    <Compile Include="Content\ContentReaders\SongReader.cs" />
-    <Compile Include="Content\ContentReaders\SoundEffectReader.cs" />
     <Compile Include="Content\ContentReaders\SpriteFontReader.cs" />
     <Compile Include="Content\ContentReaders\StringReader.cs" />
     <Compile Include="Content\ContentReaders\Texture2DReader.cs" />
@@ -112,7 +152,6 @@
     <Compile Include="Content\ContentReaders\Vector4Reader.cs" />
     <Compile Include="Content\ContentReaders\VertexBufferReader.cs" />
     <Compile Include="Content\ContentReaders\VertexDeclarationReader.cs" />
-    <Compile Include="Content\ContentReaders\VideoReader.cs" />
     <Compile Include="Content\ContentSerializerAttribute.cs" />
     <Compile Include="Content\ContentSerializerCollectionItemNameAttribute.cs" />
     <Compile Include="Content\ContentSerializerIgnoreAttribute.cs" />

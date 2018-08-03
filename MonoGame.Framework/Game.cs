@@ -9,7 +9,9 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 #endif
+#if !WebGL
 using Microsoft.Xna.Framework.Audio;
+#endif
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
@@ -91,7 +93,7 @@ namespace Microsoft.Xna.Framework
 			if (Platform != null) Platform.Log(Message);
 		}
 
-        #region IDisposable Implementation
+#region IDisposable Implementation
 
         private bool _isDisposed;
         public void Dispose()

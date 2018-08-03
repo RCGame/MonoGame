@@ -9,21 +9,34 @@ using System.Globalization;
 using Microsoft.Xna.Framework.Utilities;
 using System.Runtime.InteropServices;
 
-
-namespace Microsoft.Xna.Framework.Graphics
+namespace System
 {
+    public class GC
+    {
+        public static void SuppressFinalize(object obj)
+        {
+
+        }
+    }
+
     public class WeakReference
     {
+        object target;
         public WeakReference()
         {
 
+        }
+
+        public WeakReference(object obj)
+        {
+            target = obj;
         }
 
         public object Target
         {
             get
             {
-                return this;
+                return target;
             }
         }
 
@@ -35,6 +48,10 @@ namespace Microsoft.Xna.Framework.Graphics
             }
         }
     }
+}
+
+namespace Microsoft.Xna.Framework.Graphics
+{
 
     public partial class GraphicsDevice : IDisposable
     {

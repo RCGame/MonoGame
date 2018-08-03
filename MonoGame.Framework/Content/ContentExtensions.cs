@@ -8,7 +8,7 @@ namespace Microsoft.Xna.Framework.Content
     {
         public static ConstructorInfo GetDefaultConstructor(this Type type)
         {
-#if NET45
+#if NET45 || WebGL
             var typeInfo = type.GetTypeInfo();
             var ctor = typeInfo.DeclaredConstructors.FirstOrDefault(c => !c.IsStatic && c.GetParameters().Length == 0);
             return ctor;
