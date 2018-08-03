@@ -200,7 +200,7 @@ namespace Microsoft.Xna.Framework.Graphics
             backBufferWidth = GraphicsDeviceManager.DefaultBackBufferWidth;
             backBufferHeight = GraphicsDeviceManager.DefaultBackBufferHeight;     
 #endif
-            deviceWindowHandle = IntPtr.Zero;
+            //deviceWindowHandle = IntPtr.Zero;
 #if IOS && !TVOS
 			isFullScreen = UIApplication.SharedApplication.StatusBarHidden;
 #else

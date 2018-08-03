@@ -200,29 +200,6 @@ namespace Microsoft.Xna.Framework.Content
 			}
 		}
 
-        public virtual T LoadLocalized<T> (string assetName)
-        {
-            string [] cultureNames =
-            {
-                CultureInfo.CurrentCulture.Name,                        // eg. "en-US"
-                CultureInfo.CurrentCulture.TwoLetterISOLanguageName     // eg. "en"
-            };
-
-            // Look first for a specialized language-country version of the asset,
-            // then if that fails, loop back around to see if we can find one that
-            // specifies just the language without the country part.
-            foreach (string cultureName in cultureNames) {
-                string localizedAssetName = assetName + '.' + cultureName;
-
-                try {
-                    return Load<T> (localizedAssetName);
-                } catch (ContentLoadException) { }
-            }
-
-            // If we didn't find any localized asset, fall back to the default name.
-            return Load<T> (assetName);
-        }
-
 		public virtual T Load<T>(string assetName)
 		{
             if (string.IsNullOrEmpty(assetName))
@@ -261,143 +238,11 @@ namespace Microsoft.Xna.Framework.Content
             return result;
 		}
 		
-		protected virtual Stream OpenStream(string assetName)
-		{
-			Stream stream;
-			try
-            {
-                var assetPath = Path.Combine(RootDirectory, assetName) + ".xnb";
-
-                // This is primarily for editor support. 
-                // Setting the RootDirectory to an absolute path is useful in editor
-                // situations, but TitleContainer can ONLY be passed relative paths.                
-#if DESKTOPGL || WINDOWS
-                if (Path.IsPathRooted(assetPath))                
-                    stream = File.OpenRead(assetPath);                
-                else
-#endif
-                stream = TitleContainer.OpenStream(assetPath);
-#if ANDROID
-                // Read the asset into memory in one go. This results in a ~50% reduction
-                // in load times on Android due to slow Android asset streams.
-                MemoryStream memStream = new MemoryStream();
-                stream.CopyTo(memStream);
-                memStream.Seek(0, SeekOrigin.Begin);
-                stream.Close();
-                stream = memStream;
-#endif
-			}
-			catch (FileNotFoundException fileNotFound)
-			{
-				throw new ContentLoadException("The content file was not found.", fileNotFound);
-			}
-#if !WINDOWS_UAP
-			catch (DirectoryNotFoundException directoryNotFound)
-			{
-				throw new ContentLoadException("The directory was not found.", directoryNotFound);
-			}
-#endif
-			catch (Exception exception)
-			{
-				throw new ContentLoadException("Opening stream error.", exception);
-			}
-			return stream;
-		}
 
 		protected T ReadAsset<T>(string assetName, Action<IDisposable> recordDisposableObject)
 		{
-			if (string.IsNullOrEmpty(assetName))
-			{
-				throw new ArgumentNullException("assetName");
-			}
-			if (disposed)
-			{
-				throw new ObjectDisposedException("ContentManager");
-			}
-						
-			string originalAssetName = assetName;
-			object result = null;
-
-			if (this.graphicsDeviceService == null)
-			{
-				this.graphicsDeviceService = serviceProvider.GetService(typeof(IGraphicsDeviceService)) as IGraphicsDeviceService;
-				if (this.graphicsDeviceService == null)
-				{
-					throw new InvalidOperationException("No Graphics Device Service");
-				}
-			}
-			
-            // Try to load as XNB file
-            var stream = OpenStream(assetName);
-            using (var xnbReader = new BinaryReader(stream))
-            {
-                using (var reader = GetContentReaderFromXnb(assetName, stream, xnbReader, recordDisposableObject))
-                {
-                    result = reader.ReadAsset<T>();
-                    if (result is GraphicsResource)
-                        ((GraphicsResource)result).Name = originalAssetName;
-                }
-            }
-            
-			if (result == null)
-				throw new ContentLoadException("Could not load " + originalAssetName + " asset!");
-
-			return (T)result;
+            throw new NotImplementedException();
 		}
-
-        private ContentReader GetContentReaderFromXnb(string originalAssetName, Stream stream, BinaryReader xnbReader, Action<IDisposable> recordDisposableObject)
-        {
-            // The first 4 bytes should be the "XNB" header. i use that to detect an invalid file
-            byte x = xnbReader.ReadByte();
-            byte n = xnbReader.ReadByte();
-            byte b = xnbReader.ReadByte();
-            byte platform = xnbReader.ReadByte();
-
-            if (x != 'X' || n != 'N' || b != 'B' ||
-                !(targetPlatformIdentifiers.Contains((char)platform)))
-            {
-                throw new ContentLoadException("Asset does not appear to be a valid XNB file. Did you process your content for Windows?");
-            }
-
-            byte version = xnbReader.ReadByte();
-            byte flags = xnbReader.ReadByte();
-
-            bool compressedLzx = (flags & ContentCompressedLzx) != 0;
-            bool compressedLz4 = (flags & ContentCompressedLz4) != 0;
-            if (version != 5 && version != 4)
-            {
-                throw new ContentLoadException("Invalid XNB version");
-            }
-
-            // The next int32 is the length of the XNB file
-            int xnbLength = xnbReader.ReadInt32();
-
-            Stream decompressedStream = null;
-            if (compressedLzx || compressedLz4)
-            {
-                // Decompress the xnb
-                int decompressedSize = xnbReader.ReadInt32();
-
-                if (compressedLzx)
-                {
-                    int compressedSize = xnbLength - 14;
-                    decompressedStream = new LzxDecoderStream(stream, decompressedSize, compressedSize);
-                }
-                else if (compressedLz4)
-                {
-                    decompressedStream = new Lz4DecoderStream(stream);
-                }
-            }
-            else
-            {
-                decompressedStream = stream;
-            }
-
-            var reader = new ContentReader(this, decompressedStream, this.graphicsDeviceService.GraphicsDevice,
-                                                        originalAssetName, version, recordDisposableObject);
-            
-            return reader;
-        }
 
         internal void RecordDisposable(IDisposable disposable)
         {
@@ -434,36 +279,6 @@ namespace Microsoft.Xna.Framework.Content
 #endif
         }
 
-        protected virtual void ReloadAsset<T>(string originalAssetName, T currentAsset)
-        {
-			string assetName = originalAssetName;
-			if (string.IsNullOrEmpty(assetName))
-			{
-				throw new ArgumentNullException("assetName");
-			}
-			if (disposed)
-			{
-				throw new ObjectDisposedException("ContentManager");
-			}
-
-			if (this.graphicsDeviceService == null)
-			{
-				this.graphicsDeviceService = serviceProvider.GetService(typeof(IGraphicsDeviceService)) as IGraphicsDeviceService;
-				if (this.graphicsDeviceService == null)
-				{
-					throw new InvalidOperationException("No Graphics Device Service");
-				}
-			}
-
-            var stream = OpenStream(assetName);
-            using (var xnbReader = new BinaryReader(stream))
-            {
-                using (var reader = GetContentReaderFromXnb(assetName, stream, xnbReader, null))
-                {
-                    reader.ReadAsset<T>(currentAsset);
-                }
-            }
-		}
 
 		public virtual void Unload()
 		{

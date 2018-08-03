@@ -120,9 +120,9 @@ namespace Microsoft.Xna.Framework
         /// <param name="value1">Source value.</param>
         /// <param name="value2">Source value.</param>
         /// <returns>Distance between the two values.</returns>
-        public static float Distance(float value1, float value2)
+        public static double Distance(float value1, float value2)
         {
-            return Math.Abs(value1 - value2);
+            return Math.Abs((double)value1 - (double)value2);
         }
         
         /// <summary>

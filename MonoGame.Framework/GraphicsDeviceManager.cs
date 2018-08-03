@@ -261,7 +261,7 @@ namespace Microsoft.Xna.Framework
             presentationParameters.HardwareModeSwitch = _hardwareModeSwitch;
             presentationParameters.PresentationInterval = _synchronizedWithVerticalRetrace ? PresentInterval.One : PresentInterval.Immediate;
             presentationParameters.DisplayOrientation = _game.Window.CurrentOrientation;
-            presentationParameters.DeviceWindowHandle = _game.Window.Handle;
+            //presentationParameters.DeviceWindowHandle = _game.Window.Handle;
 
             if (_preferMultiSampling)
             {
