@@ -97,7 +97,9 @@ namespace Microsoft.Xna.Framework
         public void Dispose()
         {
             Dispose(true);
+#if !WebGL
             GC.SuppressFinalize(this);
+#endif
             EventHelpers.Raise(this, Disposed, EventArgs.Empty);
         }
 
@@ -161,9 +163,9 @@ namespace Microsoft.Xna.Framework
             }
         }
 
-        #endregion IDisposable Implementation
+#endregion IDisposable Implementation
 
-        #region Properties
+#region Properties
 
 #if ANDROID
         [CLSCompliant(false)]
@@ -285,9 +287,9 @@ namespace Microsoft.Xna.Framework
             get { return Platform.Window; }
         }
 
-        #endregion Properties
+#endregion Properties
 
-        #region Internal Properties
+#region Internal Properties
 
         // FIXME: Internal members should be eliminated.
         // Currently Game.Initialized is used by the Mac game window class to
@@ -298,9 +300,9 @@ namespace Microsoft.Xna.Framework
             get { return _initialized; }
         }
 
-        #endregion Internal Properties
+#endregion Internal Properties
 
-        #region Events
+#region Events
 
         public event EventHandler<EventArgs> Activated;
         public event EventHandler<EventArgs> Deactivated;
@@ -312,9 +314,9 @@ namespace Microsoft.Xna.Framework
         public ApplicationExecutionState PreviousExecutionState { get; internal set; }
 #endif
 
-        #endregion
+#endregion
 
-        #region Public Methods
+#region Public Methods
 
 #if IOS
         [Obsolete("This platform's policy does not allow programmatically closing.", true)]
@@ -508,9 +510,9 @@ namespace Microsoft.Xna.Framework
                 Platform.Exit();
         }
 
-        #endregion
+#endregion
 
-        #region Protected Methods
+#region Protected Methods
 
         protected virtual bool BeginDraw() { return true; }
         protected virtual void EndDraw()
@@ -582,9 +584,9 @@ namespace Microsoft.Xna.Framework
             EventHelpers.Raise(this, Deactivated, args);
 		}
 
-        #endregion Protected Methods
+#endregion Protected Methods
 
-        #region Event Handlers
+#region Event Handlers
 
         private void Components_ComponentAdded(
             object sender, GameComponentCollectionEventArgs e)
@@ -611,9 +613,9 @@ namespace Microsoft.Xna.Framework
 			DoExiting();
         }
 
-        #endregion Event Handlers
+#endregion Event Handlers
 
-        #region Internal Methods
+#region Internal Methods
 
         // FIXME: We should work toward eliminating internal methods.  They
         //        break entirely the possibility that additional platforms could
@@ -689,7 +691,7 @@ namespace Microsoft.Xna.Framework
 			UnloadContent();
 		}
 
-        #endregion Internal Methods
+#endregion Internal Methods
 
         internal GraphicsDeviceManager graphicsDeviceManager
         {

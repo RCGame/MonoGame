@@ -8,7 +8,7 @@ using System;
 
 namespace Microsoft.Xna.Framework.Graphics
 {
-    using MonoGame.Web;
+    //using MonoGame.Web;
 
     public sealed partial class SamplerStateCollection
     {

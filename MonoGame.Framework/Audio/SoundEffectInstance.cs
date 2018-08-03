@@ -189,7 +189,9 @@ namespace Microsoft.Xna.Framework.Audio
         public void Dispose()
         {
             Dispose(true);
+#if !WebGL
             GC.SuppressFinalize(this);
+#endif
         }
 
         /// <summary>

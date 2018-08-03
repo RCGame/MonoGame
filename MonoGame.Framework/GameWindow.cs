@@ -32,8 +32,9 @@ namespace Microsoft.Xna.Framework {
 #endif
 
 		public abstract DisplayOrientation CurrentOrientation { get; }
-
-		public abstract IntPtr Handle { get; }
+#if !WebGL
+        public abstract IntPtr Handle { get; }
+#endif
 
 		public abstract string ScreenDeviceName { get; }
 
@@ -72,8 +73,9 @@ namespace Microsoft.Xna.Framework {
                 throw new NotImplementedException();
             }
         }
-
+#if !WebGL
         internal MouseState MouseState;
+#endif
 	    internal TouchPanelState TouchPanelState;
 
         protected GameWindow()
@@ -81,15 +83,15 @@ namespace Microsoft.Xna.Framework {
             TouchPanelState = new TouchPanelState(this);
         }
 
-		#endregion Properties
+#endregion Properties
 
-		#region Events
+#region Events
 
 		public event EventHandler<EventArgs> ClientSizeChanged;
 		public event EventHandler<EventArgs> OrientationChanged;
 		public event EventHandler<EventArgs> ScreenDeviceNameChanged;
 
-#if WINDOWS || WINDOWS_UAP || DESKTOPGL|| ANGLE
+#if WINDOWS || WINDOWS_UAP || DESKTOPGL || ANGLE
 
         /// <summary>
 		/// Use this event to retrieve text for objects like textbox's.
@@ -104,7 +106,7 @@ namespace Microsoft.Xna.Framework {
 		public event EventHandler<TextInputEventArgs> TextInput;
 #endif
 
-		#endregion Events
+#endregion Events
 
 		public abstract void BeginScreenDeviceChange (bool willBeFullScreen);
 

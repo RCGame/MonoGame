@@ -20,10 +20,11 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WebGL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoStdLib>true</NoStdLib>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,50 +47,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio\AudioChannels.cs" />
-    <Compile Include="Audio\AudioEmitter.cs" />
-    <Compile Include="Audio\AudioListener.cs" />
-    <Compile Include="Audio\AudioLoader.cs" />
-    <Compile Include="Audio\AudioUtil.cs" />
-    <Compile Include="Audio\DynamicSoundEffectInstance.cs" />
-    <Compile Include="Audio\DynamicSoundEffectInstanceManager.cs" />
-    <Compile Include="Audio\InstancePlayLimitException.cs" />
-    <Compile Include="Audio\Microphone.cs" />
-    <Compile Include="Audio\Microphone.Default.cs" />
-    <Compile Include="Audio\NoAudioHardwareException.cs" />
-    <Compile Include="Audio\NoMicrophoneConnectedException.cs" />
-    <Compile Include="Audio\OALSoundBuffer.cs" />
-    <Compile Include="Audio\OggStream.cs" />
-    <Compile Include="Audio\SoundEffect.cs" />
-    <Compile Include="Audio\SoundEffect.Web.cs" />
-    <Compile Include="Audio\SoundEffectInstance.cs" />
-    <Compile Include="Audio\SoundEffectInstance.Web.cs" />
-    <Compile Include="Audio\SoundEffectInstancePool.cs" />
-    <Compile Include="Audio\SoundState.cs" />
-    <Compile Include="Audio\Xact\AudioCategory.cs" />
-    <Compile Include="Audio\Xact\AudioEngine.cs" />
-    <Compile Include="Audio\Xact\AudioStopOptions.cs" />
-    <Compile Include="Audio\Xact\ClipEvent.cs" />
-    <Compile Include="Audio\Xact\CrossfadeType.cs" />
-    <Compile Include="Audio\Xact\Cue.cs" />
-    <Compile Include="Audio\Xact\DspParameter.cs" />
-    <Compile Include="Audio\Xact\FilterMode.cs" />
-    <Compile Include="Audio\Xact\MaxInstanceBehavior.cs" />
-    <Compile Include="Audio\Xact\MiniFormatTag.cs" />
-    <Compile Include="Audio\Xact\PlayWaveEvent.cs" />
-    <Compile Include="Audio\Xact\ReverbSettings.cs" />
-    <Compile Include="Audio\Xact\RpcCurve.cs" />
-    <Compile Include="Audio\Xact\RpcParameter.cs" />
-    <Compile Include="Audio\Xact\RpcPoint.cs" />
-    <Compile Include="Audio\Xact\RpcPointType.cs" />
-    <Compile Include="Audio\Xact\RpcVariable.cs" />
-    <Compile Include="Audio\Xact\SoundBank.cs" />
-    <Compile Include="Audio\Xact\VolumeEvent.cs" />
-    <Compile Include="Audio\Xact\WaveBank.cs" />
-    <Compile Include="Audio\Xact\WaveBank.Default.cs" />
-    <Compile Include="Audio\Xact\XactClip.cs" />
-    <Compile Include="Audio\Xact\XactHelpers.cs" />
-    <Compile Include="Audio\Xact\XactSound.cs" />
     <Compile Include="BoundingBox.cs" />
     <Compile Include="BoundingFrustum.cs" />
     <Compile Include="BoundingSphere.cs" />
@@ -171,7 +128,6 @@
     <Compile Include="CurveKeyCollection.cs" />
     <Compile Include="CurveLoopType.cs" />
     <Compile Include="CurveTangent.cs" />
-    <Compile Include="Design\VectorConversion.cs" />
     <Compile Include="DisplayOrientation.cs" />
     <Compile Include="DrawableGameComponent.cs" />
     <Compile Include="EventHelpers.cs" />
@@ -182,33 +138,7 @@
     <Compile Include="GameComponentCollection.cs" />
     <Compile Include="GameComponentCollectionEventArgs.cs" />
     <Compile Include="GamePlatform.cs" />
-    <Compile Include="GamePlatform.Desktop.cs" />
     <Compile Include="GamePlatform.Mobile.cs" />
-    <Compile Include="GamerServices\Achievement.cs" />
-    <Compile Include="GamerServices\AchievementCollection.cs" />
-    <Compile Include="GamerServices\FriendCollection.cs" />
-    <Compile Include="GamerServices\FriendGamer.cs" />
-    <Compile Include="GamerServices\Gamer.cs" />
-    <Compile Include="GamerServices\GamerCollection.cs" />
-    <Compile Include="GamerServices\GamerDefaults.cs" />
-    <Compile Include="GamerServices\GamerPresence.cs" />
-    <Compile Include="GamerServices\GamerPresenceMode.cs" />
-    <Compile Include="GamerServices\GamerPrivileges.cs" />
-    <Compile Include="GamerServices\GamerPrivilegeSetting.cs" />
-    <Compile Include="GamerServices\GamerProfile.cs" />
-    <Compile Include="GamerServices\GamerServicesComponent.cs" />
-    <Compile Include="GamerServices\GamerServicesDispatcher.cs" />
-    <Compile Include="GamerServices\GamerZone.cs" />
-    <Compile Include="GamerServices\GuideAlreadyVisibleException.cs" />
-    <Compile Include="GamerServices\LeaderboardEntry.cs" />
-    <Compile Include="GamerServices\LeaderboardIdentity.cs" />
-    <Compile Include="GamerServices\LeaderboardKey.cs" />
-    <Compile Include="GamerServices\LeaderboardReader.cs" />
-    <Compile Include="GamerServices\LeaderboardWriter.cs" />
-    <Compile Include="GamerServices\MessageBoxIcon.cs" />
-    <Compile Include="GamerServices\NotificationPosition.cs" />
-    <Compile Include="GamerServices\PropertyDictionary.cs" />
-    <Compile Include="GamerServices\SignedInGamerCollection.cs" />
     <Compile Include="GameRunBehavior.cs" />
     <Compile Include="GameServiceContainer.cs" />
     <Compile Include="GameTime.cs" />
@@ -239,7 +169,6 @@
     <Compile Include="Graphics\Effect\EffectParameterType.cs" />
     <Compile Include="Graphics\Effect\EffectPass.cs" />
     <Compile Include="Graphics\Effect\EffectPassCollection.cs" />
-    <Compile Include="Graphics\Effect\EffectResource.cs" />
     <Compile Include="Graphics\Effect\EffectTechnique.cs" />
     <Compile Include="Graphics\Effect\EffectTechniqueCollection.cs" />
     <Compile Include="Graphics\Effect\EnvironmentMapEffect.cs" />
@@ -311,13 +240,9 @@
     <Compile Include="Graphics\SamplerStateCollection.Web.cs" />
     <Compile Include="Graphics\SetDataOptions.cs" />
     <Compile Include="Graphics\Shader\ConstantBuffer.cs" />
-    <Compile Include="Graphics\Shader\ConstantBuffer.DirectX.cs" />
-    <Compile Include="Graphics\Shader\ConstantBuffer.OpenGL.cs" />
     <Compile Include="Graphics\Shader\ConstantBuffer.Web.cs" />
     <Compile Include="Graphics\Shader\ConstantBufferCollection.cs" />
     <Compile Include="Graphics\Shader\Shader.cs" />
-    <Compile Include="Graphics\Shader\Shader.DirectX.cs" />
-    <Compile Include="Graphics\Shader\Shader.OpenGL.cs" />
     <Compile Include="Graphics\Shader\Shader.Web.cs" />
     <Compile Include="Graphics\Shader\ShaderProgramCache.cs" />
     <Compile Include="Graphics\Shader\ShaderStage.cs" />
@@ -330,24 +255,16 @@
     <Compile Include="Graphics\States\Blend.cs" />
     <Compile Include="Graphics\States\BlendFunction.cs" />
     <Compile Include="Graphics\States\BlendState.cs" />
-    <Compile Include="Graphics\States\BlendState.DirectX.cs" />
-    <Compile Include="Graphics\States\BlendState.OpenGL.cs" />
     <Compile Include="Graphics\States\BlendState.Web.cs" />
     <Compile Include="Graphics\States\CompareFunction.cs" />
     <Compile Include="Graphics\States\CullMode.cs" />
     <Compile Include="Graphics\States\DepthFormat.cs" />
     <Compile Include="Graphics\States\DepthStencilState.cs" />
-    <Compile Include="Graphics\States\DepthStencilState.DirectX.cs" />
-    <Compile Include="Graphics\States\DepthStencilState.OpenGL.cs" />
     <Compile Include="Graphics\States\DepthStencilState.Web.cs" />
     <Compile Include="Graphics\States\FillMode.cs" />
     <Compile Include="Graphics\States\RasterizerState.cs" />
-    <Compile Include="Graphics\States\RasterizerState.DirectX.cs" />
-    <Compile Include="Graphics\States\RasterizerState.OpenGL.cs" />
     <Compile Include="Graphics\States\RasterizerState.Web.cs" />
     <Compile Include="Graphics\States\SamplerState.cs" />
-    <Compile Include="Graphics\States\SamplerState.DirectX.cs" />
-    <Compile Include="Graphics\States\SamplerState.OpenGL.cs" />
     <Compile Include="Graphics\States\SamplerState.Web.cs" />
     <Compile Include="Graphics\States\StencilOperation.cs" />
     <Compile Include="Graphics\States\TargetBlendState.cs" />
@@ -371,30 +288,21 @@
     <Compile Include="Graphics\Vertices\DynamicVertexBuffer.cs" />
     <Compile Include="Graphics\Vertices\ImmutableVertexInputLayout.cs" />
     <Compile Include="Graphics\Vertices\IndexBuffer.cs" />
-    <Compile Include="Graphics\Vertices\IndexBuffer.DirectX.cs" />
-    <Compile Include="Graphics\Vertices\IndexBuffer.OpenGL.cs" />
     <Compile Include="Graphics\Vertices\IndexBuffer.Web.cs" />
     <Compile Include="Graphics\Vertices\IndexElementSize.cs" />
-    <Compile Include="Graphics\Vertices\InputLayoutCache.cs" />
     <Compile Include="Graphics\Vertices\IVertexType.cs" />
     <Compile Include="Graphics\Vertices\PrimitiveType.cs" />
     <Compile Include="Graphics\Vertices\VertexBuffer.cs" />
-    <Compile Include="Graphics\Vertices\VertexBuffer.DirectX.cs" />
-    <Compile Include="Graphics\Vertices\VertexBuffer.OpenGL.cs" />
     <Compile Include="Graphics\Vertices\VertexBuffer.Web.cs" />
     <Compile Include="Graphics\Vertices\VertexBufferBinding.cs" />
     <Compile Include="Graphics\Vertices\VertexBufferBindings.cs" />
-    <Compile Include="Graphics\Vertices\VertexBufferBindings.DirectX.cs" />
     <Compile Include="Graphics\Vertices\VertexDeclaration.cs" />
-    <Compile Include="Graphics\Vertices\VertexDeclaration.OpenGL.cs" />
     <Compile Include="Graphics\Vertices\VertexDeclaration.Web.cs" />
     <Compile Include="Graphics\Vertices\VertexDeclarationCache.cs" />
     <Compile Include="Graphics\Vertices\VertexElement.cs" />
-    <Compile Include="Graphics\Vertices\VertexElement.DirectX.cs" />
     <Compile Include="Graphics\Vertices\VertexElementFormat.cs" />
     <Compile Include="Graphics\Vertices\VertexElementUsage.cs" />
     <Compile Include="Graphics\Vertices\VertexInputLayout.cs" />
-    <Compile Include="Graphics\Vertices\VertexInputLayout.DirectX.cs" />
     <Compile Include="Graphics\Vertices\VertexPosition.cs" />
     <Compile Include="Graphics\Vertices\VertexPositionColor.cs" />
     <Compile Include="Graphics\Vertices\VertexPositionColorTexture.cs" />
@@ -405,6 +313,7 @@
     <Compile Include="IDrawable.cs" />
     <Compile Include="IGameComponent.cs" />
     <Compile Include="IGraphicsDeviceManager.cs" />
+    <Compile Include="Input\ButtonState.cs" />
     <Compile Include="Input\Touch\GestureSample.cs" />
     <Compile Include="Input\Touch\GestureType.cs" />
     <Compile Include="Input\Touch\TouchCollection.cs" />
@@ -413,57 +322,11 @@
     <Compile Include="Input\Touch\TouchPanel.cs" />
     <Compile Include="Input\Touch\TouchPanelCapabilities.cs" />
     <Compile Include="Input\Touch\TouchPanelState.cs" />
-    <Compile Include="Input\Touch\TouchQueue.cs" />
     <Compile Include="IPlatformBackButton.cs" />
     <Compile Include="IUpdateable.cs" />
     <Compile Include="LaunchParameters.cs" />
     <Compile Include="MathHelper.cs" />
     <Compile Include="Matrix.cs" />
-    <Compile Include="Media\Album.cs" />
-    <Compile Include="Media\AlbumCollection.cs" />
-    <Compile Include="Media\Artist.cs" />
-    <Compile Include="Media\Genre.cs" />
-    <Compile Include="Media\MediaLibrary.Android.cs" />
-    <Compile Include="Media\MediaLibrary.cs" />
-    <Compile Include="Media\MediaLibrary.Default.cs" />
-    <Compile Include="Media\MediaLibrary.IOS.cs" />
-    <Compile Include="Media\MediaLibrary.WinRT.cs" />
-    <Compile Include="Media\MediaLibrary.WP.cs" />
-    <Compile Include="Media\MediaManagerState.cs" />
-    <Compile Include="Media\MediaPlayer.cs" />
-    <Compile Include="Media\MediaPlayer.Default.cs" />
-    <Compile Include="Media\MediaPlayer.WME.cs" />
-    <Compile Include="Media\MediaPlayer.WMS.cs" />
-    <Compile Include="Media\MediaPlayer.WP.cs" />
-    <Compile Include="Media\MediaQueue.cs" />
-    <Compile Include="Media\MediaSource.cs" />
-    <Compile Include="Media\MediaSourceType.cs" />
-    <Compile Include="Media\MediaState.cs" />
-    <Compile Include="Media\MusicProperties.cs" />
-    <Compile Include="Media\Playlist.cs" />
-    <Compile Include="Media\PlaylistCollection.cs" />
-    <Compile Include="Media\Song.Android.cs" />
-    <Compile Include="Media\Song.cs" />
-    <Compile Include="Media\Song.Default.cs" />
-    <Compile Include="Media\Song.IOS.cs" />
-    <Compile Include="Media\Song.NVorbis.cs" />
-    <Compile Include="Media\Song.WinRT.cs" />
-    <Compile Include="Media\Song.WMS.cs" />
-    <Compile Include="Media\Song.WP.cs" />
-    <Compile Include="Media\SongCollection.cs" />
-    <Compile Include="Media\Video.Android.cs" />
-    <Compile Include="Media\Video.cs" />
-    <Compile Include="Media\Video.IOS.cs" />
-    <Compile Include="Media\Video.MacOS.cs" />
-    <Compile Include="Media\Video.WMS.cs" />
-    <Compile Include="Media\VideoPlayer.Android.cs" />
-    <Compile Include="Media\VideoPlayer.cs" />
-    <Compile Include="Media\VideoPlayer.IOS.cs" />
-    <Compile Include="Media\VideoPlayer.MacOS.cs" />
-    <Compile Include="Media\VideoPlayer.WME.cs" />
-    <Compile Include="Media\VideoPlayer.WMS.cs" />
-    <Compile Include="Media\VideoSampleGrabber.cs" />
-    <Compile Include="Media\VideoSoundtrackType.cs" />
     <Compile Include="Microsoft\Devices\Sensors\AccelerometerFailedException.cs" />
     <Compile Include="Microsoft\Devices\Sensors\AccelerometerReading.cs" />
     <Compile Include="Microsoft\Devices\Sensors\CalibrationEventArgs.cs" />
@@ -484,12 +347,32 @@
     <Compile Include="Ray.cs" />
     <Compile Include="Rectangle.cs" />
     <Compile Include="ReusableItemList.cs" />
-    <Compile Include="TextInputEventArgs.cs" />
-    <Compile Include="Threading.cs" />
     <Compile Include="TitleContainer.cs" />
+    <Compile Include="Utilities\ByteBufferPool.cs" />
+    <Compile Include="Utilities\CurrentPlatform.cs" />
+    <Compile Include="Utilities\Deflate\CRC32.cs" />
+    <Compile Include="Utilities\Deflate\Deflate.cs" />
+    <Compile Include="Utilities\Deflate\DeflateStream.cs" />
+    <Compile Include="Utilities\Deflate\GZipStream.cs" />
+    <Compile Include="Utilities\Deflate\Inflate.cs" />
+    <Compile Include="Utilities\Deflate\InfTree.cs" />
+    <Compile Include="Utilities\Deflate\Tree.cs" />
+    <Compile Include="Utilities\Deflate\Zlib.cs" />
+    <Compile Include="Utilities\Deflate\ZlibBaseStream.cs" />
+    <Compile Include="Utilities\Deflate\ZlibCodec.cs" />
+    <Compile Include="Utilities\Deflate\ZlibConstants.cs" />
+    <Compile Include="Utilities\Deflate\ZlibStream.cs" />
+    <Compile Include="Utilities\FileHelpers.cs" />
+    <Compile Include="Utilities\Hash.cs" />
+    <Compile Include="Utilities\Lz4Stream\Lz4DecoderStream.cs" />
+    <Compile Include="Utilities\LzxStream\LzxDecoderStream.cs" />
+    <Compile Include="Utilities\ReflectionHelpers.cs" />
+    <Compile Include="Utilities\ReflectionHelpers.Default.cs" />
     <Compile Include="Vector2.cs" />
     <Compile Include="Vector3.cs" />
     <Compile Include="Vector4.cs" />
+    <Compile Include="WebGL\WebGamePlatform.cs" />
+    <Compile Include="WebGL\WebGameWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bridge.json" />
@@ -520,6 +403,9 @@
     <Content Include="Graphics\Effect\Resources\EnvironmentMapEffect.fx" />
     <Content Include="Graphics\Effect\Resources\SkinnedEffect.fx" />
     <Content Include="Graphics\Effect\Resources\SpriteEffect.fx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utilities\NVorbis\Ogg\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Bridge.Min.17.2.0\build\Bridge.Min.targets" Condition="Exists('..\packages\Bridge.Min.17.2.0\build\Bridge.Min.targets')" />

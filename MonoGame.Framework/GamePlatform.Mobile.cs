@@ -16,7 +16,7 @@ namespace Microsoft.Xna.Framework
             return new AndroidGamePlatform(game);
 #elif WINDOWS_PHONE81
             return new MetroGamePlatform(game);
-#elif WEB
+#elif WEB || WebGL
             return new WebGamePlatform(game);
 #endif
         }

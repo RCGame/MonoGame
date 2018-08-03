@@ -12,6 +12,30 @@ using System.Runtime.InteropServices;
 
 namespace Microsoft.Xna.Framework.Graphics
 {
+    public class WeakReference
+    {
+        public WeakReference()
+        {
+
+        }
+
+        public object Target
+        {
+            get
+            {
+                return this;
+            }
+        }
+
+        public bool IsAlive
+        {
+            get
+            {
+                return true;
+            }
+        }
+    }
+
     public partial class GraphicsDevice : IDisposable
     {
         private Viewport _viewport;
@@ -522,7 +546,9 @@ namespace Microsoft.Xna.Framework.Graphics
         public void Dispose()
         {
             Dispose(true);
+#if !WebGL
             GC.SuppressFinalize(this);
+#endif
         }
 
         protected virtual void Dispose(bool disposing)

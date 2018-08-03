@@ -415,6 +415,7 @@ namespace Microsoft.Xna.Framework.Content
 
 		protected virtual void ReloadGraphicsAssets()
         {
+#if !WebGL
             foreach (var asset in LoadedAssets)
             {
                 // This never executes as asset.Key is never null.  This just forces the 
@@ -426,6 +427,7 @@ namespace Microsoft.Xna.Framework.Content
                 var genericMethod = methodInfo.MakeGenericMethod(asset.Value.GetType());
                 genericMethod.Invoke(this, new object[] { asset.Key, Convert.ChangeType(asset.Value, asset.Value.GetType()) }); 
             }
+#endif
         }
 
         protected virtual void ReloadAsset<T>(string originalAssetName, T currentAsset)

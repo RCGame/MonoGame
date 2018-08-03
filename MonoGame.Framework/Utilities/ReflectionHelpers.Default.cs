@@ -5,6 +5,21 @@ using System.Runtime.InteropServices;
 
 namespace Microsoft.Xna.Framework.Utilities
 {
+#if WebGL
+    internal class Marshal
+    {
+        internal static int SizeOf<T>()
+        {
+            return 1;
+        }
+
+        internal static int SizeOf(Type type)
+        {
+            return 1;
+        }
+    }
+#endif
+
     internal static partial class ReflectionHelpers
     {
         /// <summary>

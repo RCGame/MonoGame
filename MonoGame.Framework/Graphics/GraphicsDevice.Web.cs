@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace Microsoft.Xna.Framework.Graphics
 {
-    using MonoGame.Web;
+    //using MonoGame.Web;
 
     public partial class GraphicsDevice
     {
@@ -31,10 +31,10 @@ namespace Microsoft.Xna.Framework.Graphics
 
         public void PlatformClear(ClearOptions options, Vector4 color, float depth, int stencil)
         {
-            WebGL.gl.enable(WebGL.gl.DEPTH_TEST);
-            WebGL.gl.depthFunc(WebGL.gl.LEQUAL);
-            WebGL.gl.clearColor(color.X, color.Y, color.Z, color.W);
-            WebGL.gl.clear(WebGL.gl.COLOR_BUFFER_BIT | WebGL.gl.DEPTH_BUFFER_BIT);
+            //WebGL.gl.enable(WebGL.gl.DEPTH_TEST);
+            //WebGL.gl.depthFunc(WebGL.gl.LEQUAL);
+            //WebGL.gl.clearColor(color.X, color.Y, color.Z, color.W);
+            //WebGL.gl.clear(WebGL.gl.COLOR_BUFFER_BIT | WebGL.gl.DEPTH_BUFFER_BIT);
         }
 
         private void PlatformDispose()
