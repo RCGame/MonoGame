@@ -349,7 +349,6 @@
     <Compile Include="ReusableItemList.cs" />
     <Compile Include="TitleContainer.cs" />
     <Compile Include="Utilities\ByteBufferPool.cs" />
-    <Compile Include="Utilities\CurrentPlatform.cs" />
     <Compile Include="Utilities\Deflate\CRC32.cs" />
     <Compile Include="Utilities\Deflate\Deflate.cs" />
     <Compile Include="Utilities\Deflate\DeflateStream.cs" />
@@ -362,10 +361,7 @@
     <Compile Include="Utilities\Deflate\ZlibCodec.cs" />
     <Compile Include="Utilities\Deflate\ZlibConstants.cs" />
     <Compile Include="Utilities\Deflate\ZlibStream.cs" />
-    <Compile Include="Utilities\FileHelpers.cs" />
     <Compile Include="Utilities\Hash.cs" />
-    <Compile Include="Utilities\Lz4Stream\Lz4DecoderStream.cs" />
-    <Compile Include="Utilities\LzxStream\LzxDecoderStream.cs" />
     <Compile Include="Utilities\ReflectionHelpers.cs" />
     <Compile Include="Utilities\ReflectionHelpers.Default.cs" />
     <Compile Include="Vector2.cs" />
@@ -404,9 +400,7 @@
     <Content Include="Graphics\Effect\Resources\SkinnedEffect.fx" />
     <Content Include="Graphics\Effect\Resources\SpriteEffect.fx" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utilities\NVorbis\Ogg\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Bridge.Min.17.2.0\build\Bridge.Min.targets" Condition="Exists('..\packages\Bridge.Min.17.2.0\build\Bridge.Min.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
